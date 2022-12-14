@@ -1,0 +1,35 @@
+<div *ngIf="(categories !== undefined && categories.length > 0)" class="row gx-0 w-100 p-sm-5">
+    <table class="table table-striped h-0">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories">
+                <th scope="row">{{category.id_cat}}</th>
+                <td>{{category.name_cat}}</td>
+                <td class="text-end">
+                    <button class="btn p-0 ms-4" (click)="onEditCategory(category)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                    <button class="btn p-0 ms-4" (click)="onDeleteCategory(category)">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div></div>
+</div>
+<div *ngIf="(categories !== undefined && categories.length === 0)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>No categories match those filters.</p>
+    <button class="btn btn-primary" (click)="onAddNewCategory()">Add New Category</button>
+</div>
+<div *ngIf="(categories === undefined)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading categories.</p>
+</div>

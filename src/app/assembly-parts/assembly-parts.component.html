@@ -1,0 +1,35 @@
+<ngb-accordion #acc="ngbAccordion" [closeOthers]="true" activeIds="ngb-panel-0" class="d-none d-sm-flex py-4 w-100 flex-column align-items-stretch">
+    <ngb-panel id="ngb-panel-0">
+        <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="accordion-button w-100">Base</button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div class="d-flex justify-content-center">
+                <app-assembly-parts-template-base-list></app-assembly-parts-template-base-list>
+            </div>
+        </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="ngb-panel-1">
+        <ng-template ngbPanelHeader>
+            <button ngbPanelToggle class="accordion-button w-100">Blade</button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div class="d-flex justify-content-center">
+                <app-assembly-parts-template-blade-list></app-assembly-parts-template-blade-list>
+            </div>
+        </ng-template>
+    </ngb-panel>
+
+    <ngb-panel id="ngb-panel-2">
+        <ng-template ngbPanelHeader>
+            <button ngbPanelToggle class="accordion-button w-100">Body</button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div class="d-flex justify-content-center">
+                <app-assembly-parts-template-body-list></app-assembly-parts-template-body-list>
+            </div>
+        </ng-template>
+    </ngb-panel>
+
+</ngb-accordion>

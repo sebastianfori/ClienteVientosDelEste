@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="formAddPieceLabel">{{this.formTitle}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="categoryForm" #categoryEntryForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <!-- Name -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputName" class="col-form-label">Name</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="name_cat" name="name" type="text" id="inputName" class="form-control" required
+                    aria-describedby="nameHelpInline" placeholder="Name" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="nameHelpInline" class="form-text">
+                    This is the category's name.
+                </span>
+            </div>
+            <div>
+                <p *ngFor="let alert of alerts">
+                    <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+                </p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+            <button type="submit" [class]="'btn '+this.btnClass"
+                [disabled]="(!categoryEntryForm.form.valid) || (!this.valid) || this.processing">
+                {{btnText}}</button>
+        </div>
+    </div>
+</form>

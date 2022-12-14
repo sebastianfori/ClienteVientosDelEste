@@ -1,0 +1,118 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="formAddPieceLabel">{{this.formTitle}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="partForm" #partEntryForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <!-- Name -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputName" class="col-form-label">Name</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="name_piez" name="name" type="text" id="inputName" class="form-control" required
+                    aria-describedby="nameHelpInline" placeholder="Name" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="nameHelpInline" class="form-text">
+                    This is the part's name.
+                </span>
+            </div>
+        </div>
+        <!-- Category -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputCategory" class="col-form-label">Category</label>
+            </div>
+            <div class="col-9">
+                <select formControlName="id_cat" name="category" id="inputCategory" class="form-select" required
+                    aria-describedby="categoryHelpInline">
+                    <option [ngValue]="null">(Category)</option>
+                    <option *ngFor="let category of categories" [ngValue]="category.id_cat">{{category.name_cat}}</option>
+                </select>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="categoryHelpInline" class="form-text">
+                    This is the part's category.
+                </span>
+            </div>
+        </div>
+        <!-- Image -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputImage" class="col-form-label">Image</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="url_img" name="image" type="text" id="inputImage" class="form-control" required
+                    aria-describedby="imageHelpInline" placeholder="Image" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="imageHelpInline" class="form-text">
+                    This is the part's image.
+                </span>
+            </div>
+        </div>
+        <!-- Height -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputHeight" class="col-form-label">Height</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="height" name="height" type="number" id="inputHeight" class="form-control"
+                    required aria-describedby="heightHelpInline" placeholder="Height" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="heightHelpInline" class="form-text">
+                    This is the part's height.
+                </span>
+            </div>
+        </div>
+        <!-- Wind Resistance -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputWindResistance" class="col-form-label">Wind Resistance</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="resis_wind" name="wind_resistance" type="number" id="inputWindResistance"
+                    class="form-control" required aria-describedby="windResistanceHelpInline" placeholder="Wind Resistance"
+                    [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="windResistanceHelpInline" class="form-text">
+                    This is the part's wind resistance.
+                </span>
+            </div>
+        </div>
+        <!-- Material -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputMaterial" class="col-form-label">Material</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="material" name="material" type="text" id="inputMaterial" class="form-control"
+                    required aria-describedby="materialHelpInline" placeholder="Material" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="materialHelpInline" class="form-text">
+                    This is the part's material.
+                </span>
+            </div>
+        </div>
+        <div>
+            <p *ngFor="let alert of alerts">
+                <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+        <button type="submit" [class]="'btn '+this.btnClass" [disabled]="(!partEntryForm.form.valid) || (!this.valid) || this.processing">
+            {{btnText}}</button>
+    </div>
+</form>

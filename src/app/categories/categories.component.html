@@ -1,0 +1,15 @@
+<app-categories-admin *ngIf="(total !== undefined && total > 0) && !this.error"></app-categories-admin>
+<div *ngIf="(total !== undefined && total === 0) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There are no categories in our database... yet. Create one!</p>
+    <a class="btn btn-primary" (click)="createNewCategory();">Create a new category</a>
+</div>
+<div *ngIf="(total === undefined) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading categories.</p>
+</div>
+<div *ngIf="this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There was an error loading categories ({{this.error}}).</p>
+    <a class="btn btn-primary" (click)="this.refresh();">Try again</a>
+</div>

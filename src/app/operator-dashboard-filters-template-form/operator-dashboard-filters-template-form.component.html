@@ -1,0 +1,66 @@
+<form [formGroup]="filterForm" class="d-inline-block mx-auto px-sm-0 px-3">
+    <!-- Id -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterId">Id</label>
+                <input type="number" class="form-control" id="filterId" placeholder="Id" formControlName="id_diag"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Name -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterName">Name</label>
+                <input type="text" class="form-control" id="filterName" placeholder="Name" formControlName="name_diag"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Base Id -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterBaseId">Base Id</label>
+                <input type="number" class="form-control" id="filterBaseId" placeholder="Base Id" formControlName="id_base"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Body Id -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterBodyId">Body Id</label>
+                <input type="number" class="form-control" id="filterBodyId" placeholder="Body Id" formControlName="id_body"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Blade Id -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterBladeId">Blade Id</label>
+                <input type="number" class="form-control" id="filterBladeId" placeholder="Blade Id" formControlName="id_blade"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- State -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterState">State</label>
+                <select class="form-control" id="filterState" formControlName="state" (change)="onFilterChanged();">
+                    <option [ngValue]="null">(Any)</option>
+                    <option *ngFor="let state of diagramStates" [ngValue]="state">
+                        {{diagramStateMapping[state]}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>
+

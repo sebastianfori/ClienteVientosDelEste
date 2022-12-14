@@ -1,0 +1,13 @@
+<div *ngIf="(parts !== undefined && parts.length > 0)" class="row gx-0 w-100">
+    <app-parts-admin-list-item *ngFor="let part of parts" [part]="part" [category]="getPartCategory(part)" class="col-12 col-md-6 col-lg-4 my-4"></app-parts-admin-list-item>
+</div>
+<div *ngIf="(parts !== undefined && parts.length === 0)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>No parts match those filters.</p>
+    <button class="btn btn-primary" (click)="onAddNewPart()">Add New Part</button>
+</div>
+<div *ngIf="(parts === undefined)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading parts.</p>
+</div>
+

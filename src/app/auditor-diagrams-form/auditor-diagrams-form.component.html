@@ -1,0 +1,97 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="formAddPieceLabel">Audit Diagram</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="diagramForm" #diagramEntryForm="ngForm">
+    <div class="modal-body">
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputName" class="col-form-label">Name</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="name_diag" name="name" type="text" id="inputName" class="form-control" required
+                    aria-describedby="nameHelpInline" placeholder="Name" [readonly]="true">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="nameHelpInline" class="form-text">
+                    The diagram's name.
+                </span>
+            </div>
+        </div>
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBase" class="col-form-label">Base</label>
+            </div>
+            <div class="col-9">
+                <app-assembly-part-item [part]="base"></app-assembly-part-item>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="baseHelpInline" class="form-text">
+                    The diagram's base part.
+                </span>
+            </div>
+        </div>
+        
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBlade" class="col-form-label">Blade</label>
+            </div>
+            <div class="col-9">
+                <app-assembly-part-item [part]="blade"></app-assembly-part-item>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="bladeHelpInline" class="form-text">
+                    The diagram's blade part.
+                </span>
+            </div>
+        </div>
+        
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBody" class="col-form-label">Body</label>
+            </div>
+            <div class="col-9">
+                <app-assembly-part-item [part]="body"></app-assembly-part-item>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="bodyHelpInline" class="form-text">
+                    The diagram's body part.
+                </span>
+            </div>
+        </div>
+        
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="descriptionBody" class="col-form-label">Description</label>
+            </div>
+            <div class="col-9">
+                <textarea formControlName="description" name="description" id="inputDescription" class="form-control"
+                    aria-describedby="descriptionHelpInline" placeholder="Description" [readonly]="true" rows="5"></textarea>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="descriptionHelpInline" class="form-text">
+                    A description for the diagram.
+                </span>
+            </div>
+        </div>
+        <div>
+            <p *ngFor="let alert of alerts">
+                <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+        <button type="button" [class]="'btn btn-primary'" (click)="onApprove()"
+            [disabled]="(!diagramEntryForm.form.valid) || (!this.valid) || this.processing">
+            Approve</button>
+        <button type="button" [class]="'btn btn-danger'" (click)="onReject()"
+            [disabled]="(!diagramEntryForm.form.valid) || (!this.valid) || this.processing">
+            Reject</button>
+    </div>
+</form>

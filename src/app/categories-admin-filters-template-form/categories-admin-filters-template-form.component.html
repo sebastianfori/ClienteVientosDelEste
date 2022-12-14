@@ -1,0 +1,12 @@
+<form [formGroup]="filterForm" class="d-inline-block mx-auto px-sm-0 px-3">
+    <!-- Name -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterName">Name</label>
+                <input type="text" class="form-control" id="filterName" placeholder="Name" formControlName="name_cat"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+</form>

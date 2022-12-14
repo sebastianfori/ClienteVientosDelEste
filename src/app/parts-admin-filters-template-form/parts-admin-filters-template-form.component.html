@@ -1,0 +1,77 @@
+<form [formGroup]="filterForm" class="d-inline-block mx-auto px-sm-0 px-3">
+    <!-- Name -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterName">Name</label>
+                <input type="text" class="form-control" id="filterName" placeholder="Name" formControlName="name_piez"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Category -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterCategory">Category</label>
+                <select class="form-control" id="filterCategory" formControlName="id_cat" (change)="onFilterChanged();">
+                    <option [ngValue]="null">(Any)</option>
+                    <option *ngFor="let category of categories" [ngValue]="category.id_cat">
+                        {{category.name_cat}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!-- Height Under -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterHeightUnder">Height Under</label>
+                <input type="number" class="form-control" id="filterHeightUnder" placeholder="Height Under" formControlName="height_under"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Height Over -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterHeightOver">Height Over</label>
+                <input type="number" class="form-control" id="filterHeightOver" placeholder="Height Over" formControlName="height_over"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Wind Resistance Under -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterWindResistanceUnder">Wind Resistance Under</label>
+                <input type="number" class="form-control" id="filterWindResistanceUnder" placeholder="Wind Resistance Under" formControlName="resis_wind_under"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Wind Resistance Over -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterWindResistanceOver">Wind Resistance Over</label>
+                <input type="number" class="form-control" id="filterWindResistanceOver" placeholder="Wind Resistance Over" formControlName="resis_wind_over"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Material -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterMaterial">Material</label>
+                <input type="text" class="form-control" id="filterMaterial" placeholder="Material" formControlName="material"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+</form>
+
+

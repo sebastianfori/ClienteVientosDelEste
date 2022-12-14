@@ -1,0 +1,15 @@
+<app-parts-admin *ngIf="(total !== undefined && total > 0) && !this.error"></app-parts-admin>
+<div *ngIf="(total !== undefined && total === 0) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There are no parts in our database... yet. Create one!</p>
+    <a class="btn btn-primary" (click)="createNewPart();">Create a new part</a>
+</div>
+<div *ngIf="(total === undefined) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading parts.</p>
+</div>
+<div *ngIf="this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There was an error loading parts ({{this.error}}).</p>
+    <a class="btn btn-primary" (click)="this.refresh();">Try again</a>
+</div>

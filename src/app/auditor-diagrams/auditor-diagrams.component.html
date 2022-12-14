@@ -1,0 +1,17 @@
+<div *ngIf="(total !== undefined && total > 0) && !this.error" class="container-xxl gx-3 ve-layout">
+    <app-auditor-diagrams-filters></app-auditor-diagrams-filters>
+    <app-auditor-diagrams-list></app-auditor-diagrams-list>
+</div>
+<div *ngIf="(total !== undefined && total === 0) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There are no diagrams in our database... yet. Come back later!</p>
+</div>
+<div *ngIf="(total === undefined) && !this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading diagrams.</p>
+</div>
+<div *ngIf="this.error"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There was an error loading diagrams ({{this.error}}).</p>
+    <a class="btn btn-primary" (click)="this.refresh();">Try again</a>
+</div>

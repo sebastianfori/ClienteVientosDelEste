@@ -1,0 +1,1 @@
+<ngb-alert #staticAlert *ngIf="!staticAlertClosed" [type]="alert!.type" (closed)="close()" [dismissible]="alert!.dismissable">{{ alert!.text }}</ngb-alert>

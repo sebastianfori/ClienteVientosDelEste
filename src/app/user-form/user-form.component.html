@@ -1,0 +1,87 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="formAddPieceLabel">{{this.formTitle}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="userForm" #userEntryForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <!-- Nick -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputNick" class="col-form-label">Nick</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="nick_usu" name="nick" type="text" id="inputNick" class="form-control"
+                    required aria-describedby="nickHelpInline" placeholder="Nick" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="nickHelpInline" class="form-text">
+                    This is the user's nickname. Nice to meet you!
+                </span>
+            </div>
+        </div>
+        <!-- mail -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputMail" class="col-form-label">Mail</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="mail_usu" name="mail" type="text" id="inputMail" class="form-control"
+                    required aria-describedby="mailHelpInline" placeholder="Mail" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="mailHelpInline" class="form-text">
+                    The user's email address, so we can chat later!
+                </span>
+            </div>
+        </div>
+        <!-- password -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputPassword" class="col-form-label">Password</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="password" name="password" type="password" id="inputPassword"
+                    class="form-control" aria-describedby="passwordHelpInline" placeholder="Password"
+                    [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="passwordHelpInline" class="form-text">
+                    A password for the account, make it safe!.
+                </span>
+            </div>
+        </div>
+        <!-- type -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputType" class="col-form-label">Type</label>
+            </div>
+            <div class="col-9">
+                <select formControlName="type" name="type" id="inputType" class="form-select"
+                    aria-describedby="typeHelpInline">
+                    <option [ngValue]="null">(Type)</option>
+                    <option *ngFor="let type of userTypes" [ngValue]="type">
+                        {{userTypeMapping[type]}}</option>
+                </select>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="typeHelpInline" class="form-text">
+                    What type of user should you be, hmm?.
+                </span>
+            </div>
+        </div>
+        <div>
+            <p *ngFor="let alert of alerts">
+                <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+        <button type="submit" [class]="'btn '+this.btnClass" [disabled]="(!userEntryForm.form.valid) || (!this.valid) || this.processing">
+            {{btnText}}</button>
+    </div>
+</form>

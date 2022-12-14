@@ -1,0 +1,66 @@
+<nav class="container-xxl gx-3">
+    <a class="navbar-brand p-0 me-0 me-sm-2">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="32"
+            viewBox="0 0 500 500" class="d-block my-1">
+            <defs>
+                <style>
+                    .cls-1,
+                    .cls-2 {
+                        stroke: #000;
+                        stroke-width: 1px;
+                    }
+
+                    .cls-1 {
+                        fill: url(#linear-gradient);
+                    }
+
+                    .cls-2 {
+                        fill: #343434;
+                        fill-rule: evenodd;
+                    }
+                </style>
+                <linearGradient id="linear-gradient" x1="464" y1="249.5" x2="35" y2="249.5"
+                    gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#4be6cf" />
+                    <stop offset="1" stop-color="#d4f8ae" />
+                </linearGradient>
+            </defs>
+            <rect id="Rectángulo_redondeado_1" data-name="Rectángulo redondeado 1" class="cls-1" x="35" y="36"
+                width="429" height="427" rx="50" ry="50" />
+            <path id="Forma_316_1" data-name="Forma 316 1" class="cls-2"
+                d="M327.672,301.008q0,32.795,3.885,49.535t18.432,16.743q11.157,0,15.144-9.7t4.184-30.483h29.69Q397.611,398,347.2,398,293,398,293,298.7q0-108.3,56.192-108.308,21.319,0,36.564,18.706T401,286.459v14.549H327.672Zm36.265-72.4q-4.183-13.044-15.144-13.048-12.954,0-17.036,13.74t-4.085,42.377h40.45Q368.122,241.661,363.937,228.61ZM207.517,395.229s-16.538-98.6-31.539-184.452c-0.332-1.9-1.714-7.589-2.041-9.459-0.556-3.184-50.95,6.8-69.276,13.751-11.709,4.444-10.452-2.269,65.195-31.487,1.459-.563-0.721-3.022-1.02-4.729-0.29-1.661.283-1.926,0-3.548-0.209-1.194-15.542-2.678-34.687,2.365-26.909,7.088-46.534,18.569-54.072,16.554-2.246-.6,20.5-22.175,37.748-30.742,25.172-12.507,46.452-15.71,46.14-17.493q-0.35-2.006-.689-3.942c-0.281-1.609.522-4.574-.824-4.717-46.145-4.9-93.628,26.773-99.719,28.516s26.856-37.3,54.072-48.477c34.081-14.539,39.531-15.042,39.476-15.355-0.114-.656-0.174-1-0.174-1h33.137l31.947,222.336,34.248-222.336h32.58l-53.4,294.211h-27.1Z" />
+        </svg>
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+        &#9776;
+    </button>
+
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse flex-grow-1">
+        <ul class="navbar-nav w-100">
+            <li class="nav-item" *ngFor="let link of auth.routes$ | async">
+                <a class="nav-link text-center text-sm-start" [routerLink]="link.fragment">{{ link.text }}</a>
+            </li>
+            <li class="ms-auto"></li>
+            <li ngbDropdown display="dynamic" class="nav-item d-inline-block" *ngIf="this.isLoggedIn">
+                <a ngbDropdownToggle tabindex="0" class="nav-link text-center text-sm-start" id="navbarDropdown2"
+                    role="button">
+                    <fa-icon [icon]="this.faUser" class=""></fa-icon>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown2" class="dropdown-menu-end" data-bs-display="static">
+                    <a ngbDropdownItem (click)="changePassword()">Change password</a>
+                </div>
+            </li>
+            <li class="nav-item" *ngIf="this.isLoggedIn">
+                <a class="nav-link text-center text-sm-start" (click)="logout()">
+                    <fa-icon [icon]="this.faSignOutAlt" class=""></fa-icon>
+                </a>
+            </li>
+            <li class="nav-item" *ngIf="!this.isLoggedIn">
+                <a class="nav-link text-center text-sm-start" (click)="login()">
+                    <fa-icon [icon]="this.faSignInAlt" class=""></fa-icon>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>

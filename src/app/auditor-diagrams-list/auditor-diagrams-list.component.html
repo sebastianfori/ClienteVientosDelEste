@@ -1,0 +1,34 @@
+<div *ngIf="(diagrams !== undefined && diagrams.length > 0)" class="row gx-0 w-100 p-sm-5">
+    <table class="table table-striped h-0">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col" class="d-none d-lg-table-cell">State</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let diagram of diagrams" [class.table-success]="diagram.state === diagramState.Aprobado" [class.table-warning]="diagram.state === diagramState.Pendiente" [class.table-danger]="diagram.state === diagramState.Rechazado">
+                <th scope="row">{{diagram.id_diag}}</th>
+                <td>{{diagram.name_diag}}</td>
+                <td class="d-none d-lg-table-cell">{{diagramStateMapping[diagram.state]}}</td>
+                <td class="text-end">
+                    <button class="btn p-0 ms-4" (click)="onEditDiagram(diagram)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div></div>
+</div>
+<div *ngIf="(diagrams !== undefined && diagrams.length === 0)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>No diagrams match those filters.</p>
+</div>
+<div *ngIf="(diagrams === undefined)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading diagrams.</p>
+</div>
+

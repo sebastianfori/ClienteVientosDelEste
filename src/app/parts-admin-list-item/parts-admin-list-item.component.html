@@ -1,0 +1,15 @@
+<div class="card mx-auto" style="width: 14rem;">
+    <img src="{{part.url_img}}" class="card-img-top" style="height: 8rem; background-repeat: no-repeat; background-size: cover;" alt="{{part.name_piez}}">
+    <div class="card-body p-2">
+        <h5 class="card-title">{{part.name_piez}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{category!.name_cat}}</h6>
+        <span class="btn-group w-100 me-auto justify-content-end">
+            <button class="btn" (click)="onEditPart(part)">
+                <fa-icon [icon]="faEdit"></fa-icon>
+            </button>
+            <button class="btn" (click)="onDeletePart(part)">
+                <fa-icon [icon]="faTrash"></fa-icon>
+            </button>
+        </span>
+    </div>
+</div>

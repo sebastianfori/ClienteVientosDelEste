@@ -1,0 +1,45 @@
+<form [formGroup]="filterForm" class="d-inline-block mx-auto px-sm-0 px-3">
+    <!-- Id -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterId">Id</label>
+                <input type="number" class="form-control" id="filterId" placeholder="Id" formControlName="id_usu"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Nick -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterNick">Nick</label>
+                <input type="text" class="form-control" id="filterNick" placeholder="Nick" formControlName="nick_usu"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Email -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterEmail">Email</label>
+                <input type="text" class="form-control" id="filterEmail" placeholder="Email" formControlName="mail_usu"
+                    (input)="onFilterChanged();">
+            </div>
+        </div>
+    </div>
+    <!-- Type -->
+    <div class="row gx-0">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="filterType">Type</label>
+                <select class="form-control" id="filterType" formControlName="type" (change)="onFilterChanged();">
+                    <option [ngValue]="null">(Any)</option>
+                    <option *ngFor="let type of userTypes" [ngValue]="type">
+                        {{userTypeMapping[type]}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</form>

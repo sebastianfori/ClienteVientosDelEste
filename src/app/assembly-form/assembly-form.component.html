@@ -1,0 +1,113 @@
+<div class="row gx-0 w-100 p-sm-5">
+    <form [formGroup]="diagramForm" class="d-inline-block mx-auto px-sm-0 px-3" (ngSubmit)="onSubmit()">
+        <div>
+            <p *ngFor="let alert of alerts">
+                <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+            </p>
+        </div>
+        <div class="row gx-0 my-4">
+            <div class="col-md-12">
+                <div class="form-group row mx-auto" style="width:14rem;max-width:80vw">
+                    <div class="col">
+                        <input type="text" class="form-control" id="diagramName" placeholder="Name"
+                            formControlName="name_diag">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Blade Card -->
+        <div class="row gx-0 my-2">
+            <div cdkDropList id="bladeList" #bladeList="cdkDropList" cdkDropListConnectedTo="bladesList"
+                (cdkDropListDropped)="drop($event)" [cdkDropListData]="blade"
+                class="card mx-auto d-flex justify-content-center align-items-center position-relative"
+                style="width: 14rem;min-height:9rem;background-color: #dee2e6;" (click)="selectDropZone(1)">
+                <h5 class="position-absolute top-50 start-50 translate-middle font-weight-bold text-muted"
+                    *ngIf="blade.length === 0">Blade</h5>
+                <div *ngFor="let part of blade" class="bg-white">
+                    <img src="{{part.url_img}}" class="card-img-top"
+                        style="height: 8rem; background-repeat: no-repeat; background-size: cover;"
+                        alt="{{part.name_piez}}">
+                    <div class="card-body p-2">
+                        <h5 class="card-title text-center text-nowrap">{{part.name_piez}}</h5>
+                        <div class="row">
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.height}} m
+                            </h6>
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.resis_wind}}
+                                N</h6>
+                        </div>
+                        <h6 class="col-12 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.material}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Body Card -->
+        <div class="row gx-0 my-2">
+            <div cdkDropList id="bodyList" #bodyList="cdkDropList" cdkDropListConnectedTo="bodiesList"
+                (cdkDropListDropped)="drop($event)" [cdkDropListData]="body"
+                class="card mx-auto d-flex justify-content-center align-items-center position-relative"
+                style="width: 14rem;min-height:9rem;background-color: #dee2e6;" (click)="selectDropZone(1)">
+                <h5 class="position-absolute top-50 start-50 translate-middle font-weight-bold text-muted"
+                    *ngIf="body.length === 0">Body</h5>
+                <div *ngFor="let part of body" class="bg-white">
+                    <img src="{{part.url_img}}" class="card-img-top"
+                        style="height: 8rem; background-repeat: no-repeat; background-size: cover;"
+                        alt="{{part.name_piez}}">
+                    <div class="card-body p-2">
+                        <h5 class="card-title text-center text-nowrap">{{part.name_piez}}</h5>
+                        <div class="row">
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.height}} m
+                            </h6>
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.resis_wind}}
+                                N</h6>
+                        </div>
+                        <h6 class="col-12 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.material}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Base Card -->
+        <div class="row gx-0 my-2">
+            <div cdkDropList id="baseList" #baseList="cdkDropList" cdkDropListConnectedTo="basesList"
+                (cdkDropListDropped)="drop($event)" [cdkDropListData]="base"
+                class="card mx-auto d-flex justify-content-center align-items-center position-relative"
+                style="width: 14rem;min-height:9rem;background-color: #dee2e6;" (click)="selectDropZone(1)">
+                <h5 class="position-absolute top-50 start-50 translate-middle font-weight-bold text-muted"
+                    *ngIf="base.length === 0">Base</h5>
+                <div *ngFor="let part of base" class="bg-white">
+                    <img src="{{part.url_img}}" class="card-img-top"
+                        style="height: 8rem; background-repeat: no-repeat; background-size: cover;"
+                        alt="{{part.name_piez}}">
+                    <div class="card-body p-2">
+                        <h5 class="card-title text-center text-nowrap">{{part.name_piez}}</h5>
+                        <div class="row">
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.height}} m
+                            </h6>
+                            <h6 class="col-6 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.resis_wind}}
+                                N</h6>
+                        </div>
+                        <h6 class="col-12 text-center text-nowrap card-subtitle mb-2 text-muted">{{part.material}}</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-0 mb-5">
+            <div class="col-md-12">
+                <div class="form-group row mx-auto" style="width:14rem;max-width:80vw">
+                    <div class="col">
+                        <textarea class="form-control" id="diagramDescription" placeholder="Description"
+                            formControlName="description" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Submit button -->
+        <div class="row gx-0 mb-2">
+            <div class="col-md-12 mx-auto" style="width: 14rem;">
+                <div class="form-group row">
+                    <button type="submit" [class]="'btn btn-block '+this.btnClass"
+                        [disabled]="!diagramForm.valid || (!this.valid) || this.processing">{{btnText}}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

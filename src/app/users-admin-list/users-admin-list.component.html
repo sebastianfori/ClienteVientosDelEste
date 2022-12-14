@@ -1,0 +1,39 @@
+<div *ngIf="(users !== undefined && users.length > 0)" class="row gx-0 w-100 p-sm-5">
+    <table class="table table-striped h-0">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nick</th>
+                <th scope="col" class="d-none d-lg-table-cell">Email</th>
+                <th scope="col" class="d-none d-lg-table-cell">Type</th>
+                <th scope="col" class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th scope="row">{{user.id_usu}}</th>
+                <td>{{user.nick_usu}}</td>
+                <td class="d-none d-lg-table-cell">{{user.mail_usu}}</td>
+                <td class="d-none d-lg-table-cell">{{userTypeMapping[user.type]}}</td>
+                <td class="text-end">
+                    <button class="btn p-0 ms-4" (click)="onEditUser(user)">
+                        <fa-icon [icon]="faEdit"></fa-icon>
+                    </button>
+                    <button class="btn p-0 ms-4" (click)="onDeleteUser(user)">
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div></div>
+</div>
+<div *ngIf="(users !== undefined && users.length === 0)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>No users match those filters.</p>
+    <button class="btn btn-primary" (click)="onAddNewUser()">Add New User</button>
+</div>
+<div *ngIf="(users === undefined)"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading users.</p>
+</div>

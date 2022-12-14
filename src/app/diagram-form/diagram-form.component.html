@@ -1,0 +1,119 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="formAddPieceLabel">{{this.formTitle}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<form [formGroup]="diagramForm" #diagramEntryForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="modal-body">
+        <!-- Name -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputName" class="col-form-label">Name</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="name_diag" name="name" type="text" id="inputName" class="form-control"
+                    required aria-describedby="nameHelpInline" placeholder="Name" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="nameHelpInline" class="form-text">
+                    This is the diagram's name.
+                </span>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputDescription" class="col-form-label">Description</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="description" name="description" type="text" id="inputDescription" class="form-control"
+                    required aria-describedby="descriptionHelpInline" placeholder="Description" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="descriptionHelpInline" class="form-text">
+                    This is the diagram's description.
+                </span>
+            </div>
+        </div>
+        <!-- Base Id -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBaseId" class="col-form-label">Base Id</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="id_base" name="baseId" type="number" id="inputBaseId" class="form-control"
+                    required aria-describedby="baseIdHelpInline" placeholder="Base Id" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="baseIdHelpInline" class="form-text">
+                    This is the diagram's base id.
+                </span>
+            </div>
+        </div>
+        <!-- Body Id -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBodyId" class="col-form-label">Body Id</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="id_body" name="bodyId" type="number" id="inputBodyId" class="form-control"
+                    required aria-describedby="bodyIdHelpInline" placeholder="Body Id" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="bodyIdHelpInline" class="form-text">
+                    This is the diagram's body id.
+                </span>
+            </div>
+        </div>
+        <!-- Blade Id -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputBladeId" class="col-form-label">Blade Id</label>
+            </div>
+            <div class="col-9">
+                <input formControlName="id_blade" name="bladeId" type="number" id="inputBladeId" class="form-control"
+                    required aria-describedby="bladeIdHelpInline" placeholder="Blade Id" [readonly]="!this.valid">
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="bladeIdHelpInline" class="form-text">
+                    This is the diagram's blade id.
+                </span>
+            </div>
+        </div>
+        <!-- State -->
+        <div class="row g-3 align-items-start mb-3 form-group">
+            <div class="col-3">
+                <label for="inputState" class="col-form-label">State</label>
+            </div>
+            <div class="col-9">
+                <select formControlName="state" name="state" id="inputState" class="form-select"
+                    aria-describedby="stateHelpInline">
+                    <option [ngValue]="null">(State)</option>
+                    <option *ngFor="let state of diagramStates" [ngValue]="state">
+                        {{diagramStateMapping[state]}}</option>
+                </select>
+            </div>
+            <div class="col-3 gy-0"></div>
+            <div class="col-9 gy-0">
+                <span id="stateHelpInline" class="form-text">
+                    This is the diagram's state.
+                </span>
+            </div>
+        </div>
+        <div>
+            <p *ngFor="let alert of alerts">
+                <app-alert [alert]="alert" (remove)="removeAlert($event)"></app-alert>
+            </p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Close</button>
+        <button type="submit" [class]="'btn '+this.btnClass" [disabled]="(!diagramEntryForm.form.valid) || (!this.valid) || this.processing">
+            {{btnText}}</button>
+    </div>
+</form>
+

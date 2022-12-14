@@ -1,0 +1,34 @@
+<div class="d-flex d-sm-none navbar border-bottom border-2 border-color-translucent" style="cursor: pointer;"
+    (click)="open()">
+    <ul class="navbar-nav flex-grow mx-auto">
+        <li class="nav-item col-sm-auto d-flex flex-nowrap align-items-center">
+            <fa-icon ngbNavLink [icon]="faFilter" class="nav-icon nav-link text-center text-sm-start"></fa-icon>
+            <span ngbNavLink class="ms-2">Filters</span>
+        </li>
+    </ul>
+</div>
+
+<ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0" class="d-none d-sm-flex py-4 w-100 flex-column align-items-stretch">
+    <ngb-panel id="ngb-panel-0">
+        <ng-template ngbPanelHeader let-opened="opened">
+            <button ngbPanelToggle class="accordion-button w-100">Filters</button>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <div class="d-flex justify-content-center">
+                <app-operator-dashboard-filters-template-form></app-operator-dashboard-filters-template-form>
+            </div>
+        </ng-template>
+    </ngb-panel>
+    <ngb-panel id="ngb-panel-1" [cardClass]="'disabled'">
+        <ng-template ngbPanelHeader>
+            <div class="accordion-button custom-header justify-content-between" [class.collapsed]="true">
+                <p class="m-0">Actions</p>
+                <div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary ms-2" (click)="createNewDiagram()">
+                        Create diagram
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

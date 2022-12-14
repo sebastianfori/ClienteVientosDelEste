@@ -1,0 +1,17 @@
+<div *ngIf="blades !== undefined && blades.length > 0" class="row gx-0 w-100">
+    <div class="col" id="bladesList" cdkDropList #bladesList="cdkDropList" cdkDropListConnectedTo="bladeList" [cdkDropListData]="blades" >
+        <div *ngFor="let blade of blades" cdkDrag>
+            <app-assembly-part-item  [part]="blade"></app-assembly-part-item>
+            <div *cdkDragPlaceholder style="height: 0px !important;"></div>
+        <div *ngFor="let blade of blades">
+    </div>
+    <div></div>
+</div>
+<div *ngIf="blades !== undefined && blades.length === 0"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>There are no blades.</p>
+</div>
+<div *ngIf="blades === undefined"
+    class="d-flex justify-content-center align-items-center flex-grow-1 flex-shrink-0 flex-column">
+    <p>Loading blades.</p>
+</div>
